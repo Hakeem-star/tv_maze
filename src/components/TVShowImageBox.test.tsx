@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import TVShowImageBox from "./TVShowImageBox";
 
 test("Renders headers for both sections", () => {
-  render(<App />);
+  render(<TVShowImageBox />);
   const mainHeader = screen.getByText(/tv bland/i);
   const lastAddedShows = screen.getByText(/last added shows/i);
 
