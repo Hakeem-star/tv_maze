@@ -1,15 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Global } from "@emotion/react";
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
-import HeaderDescription from "./components/HeaderDescription";
-import LastAddedShows from "./components/LastAddedShowsContainer";
-import SingleShowDetail from "./components/SingleShowDetail";
-import SingleShowHero from "./components/SingleShowHero";
-import globalStyles from "./styles/globalStyles";
-import styleReset from "./styles/styleReset";
+import HomePage from "./components/HomePage";
+import globalStyles from "./globalStyles";
+import styleReset from "./globalStyles/styleReset";
+import ShowPage from "./components/ShowPage";
 
 function App() {
   return (
@@ -21,37 +19,23 @@ function App() {
           css={css`
             height: 100vh;
             width: 100%;
-            display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: auto 100%;
+            display: flex;
+            flex-direction: column;
           `}
         >
           <Header
             styles={css`
               grid-row: 1/2;
             `}
-          >
-            <Switch>
-              <Route exact path="/">
-                <HeaderDescription />
-              </Route>
-              <Route path="/:name">
-                <SingleShowHero />
-              </Route>
-            </Switch>
-          </Header>
-
-          <div
-            css={css`
-              grid-row: 2/3;
-              height: 100%;
-              width: 100%;
-              padding: 0 var(--gutter);
-            `}
-          >
-            <LastAddedShows />
-            <SingleShowDetail />
-          </div>
+          />
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/:name">
+              <ShowPage />
+            </Route>
+          </Switch>
         </div>
       </div>
     </Router>

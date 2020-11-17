@@ -1,31 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import React, { ReactElement } from "react";
 import LastAddedShowsList from "./LastAddedShowsList";
+import {
+  lastAddedShowsContainerh3,
+  lastAddedShowsContainerInnerWrapper,
+  lastAddedShowsContainerWrapper,
+} from "./styles/lastAddedShowsContainer";
 
-interface Props {}
-
-export default function LastAddedShowsContainer({}: Props): ReactElement {
+export default function LastAddedShowsContainer(): ReactElement {
   return (
-    <div
-      css={css`
-        padding-top: 40px;
-      `}
-    >
-      <h3
-        css={css`
-          font-family: Arial;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 20px;
-          letter-spacing: 0.33000001311302185px;
-          text-align: left;
-        `}
-      >
-        Last Added Shows
-      </h3>
-      <LastAddedShowsList />
+    <div css={lastAddedShowsContainerWrapper}>
+      <div css={lastAddedShowsContainerInnerWrapper}>
+        <h3 css={lastAddedShowsContainerh3}>Last Added Shows</h3>
+        <LastAddedShowsList />
+      </div>
     </div>
   );
 }

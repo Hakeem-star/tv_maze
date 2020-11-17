@@ -1,21 +1,17 @@
 /** @jsxImportSource @emotion/react */
 
-import { css } from "@emotion/react";
 import React, { ReactElement } from "react";
+import { ShowDetailHeroWrapper } from "./styles/showDetailHero";
 import TVShowImageBox from "./TVShowImageBox";
 
 interface Props {}
 
 export default function ShowDetailHero({}: Props): ReactElement {
   return (
-    <div
-      css={css`
-        height: 100%;
-        width: 100%;
-        background-color: #ebebeb;
-      `}
-    >
-      <TVShowImageBox />
+    <div css={ShowDetailHeroWrapper}>
+      <div>
+        <TVShowImageBox large />
+      </div>
     </div>
   );
 }
