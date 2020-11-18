@@ -7,11 +7,7 @@ import { ShowDetailHeroWrapper } from "./styles/showDetailHero";
 import TVShowImageBox from "./TVShowImageBox";
 
 export default function ShowDetailHero(): ReactElement {
-  const show = useContext(ShowContext);
-
-  if (!show) {
-    return <div>Loading...</div>;
-  }
+  let show = useContext(ShowContext);
 
   if (show && "error" in show) {
     return <ErrorResponse />;

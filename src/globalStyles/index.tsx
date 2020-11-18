@@ -4,6 +4,7 @@ const globalStyles = css`
   /* variables */
   html {
     --gutter: 15px;
+    --placeholderBGColour: #c9c9c9;
     @media screen and (min-width: 576px) {
       --gutter: 100px;
     }

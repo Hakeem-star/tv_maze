@@ -12,20 +12,14 @@ import {
   starringWrapper__Content__icon,
 } from "./styles/singleShowDetail";
 
-interface Props {}
-
-export default function SingleShowDetail({}: Props): ReactElement {
+export default function SingleShowDetail(): ReactElement {
   const show = useContext(ShowContext);
   const cast = useContext(CastContext);
 
-  if (!show || !cast) {
-    return <div>Loading...</div>;
-  }
-
-  if ((show && cast && "error" in show) || "error" in cast) {
+  if ((show && "error" in show) || (cast && "error" in cast)) {
     return <ErrorResponse />;
   }
-  const { schedule, status, genres, network } = show;
+  const { schedule, status, genres, network } = show || {};
 
   return (
     <div css={singleShowDetailWrapper}>
@@ -50,7 +44,7 @@ export default function SingleShowDetail({}: Props): ReactElement {
             <p>Genres</p>
             <p>
               <span>
-                {genres.map((genre) => (
+                {genres?.map((genre) => (
                   <p key={genre}>{genre}</p>
                 ))}
               </span>
@@ -70,17 +64,14 @@ export default function SingleShowDetail({}: Props): ReactElement {
           Starring
         </p>
         <div css={starringWrapper__Content}>
-          {cast.map(
-            (
-              {
-                person: {
-                  name,
-                  image: { original },
-                },
-                character,
-              },
-              index
-            ) => (
+          {(cast || Array(4).fill("")).map((castData, index) => {
+            let { person, character } = castData || {};
+            let {
+              name,
+              image: { original },
+            } = person || { image: { original: "" } };
+            character = character || {};
+            return (
               <div key={name + character + index}>
                 <i css={starringWrapper__Content__icon(original)}></i>
                 <div>
@@ -88,8 +79,8 @@ export default function SingleShowDetail({}: Props): ReactElement {
                   <p>{character.name || null}</p>
                 </div>
               </div>
-            )
-          )}
+            );
+          })}
         </div>
       </div>
     </div>

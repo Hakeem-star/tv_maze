@@ -13,7 +13,7 @@ interface Props {
 }
 export default function LastAddedShowsList({ schedule }: Props): ReactElement {
   if (!schedule) {
-    return <div>Loading...</div>;
+    schedule = Array(10).fill({ show: "" });
   }
 
   if (schedule && "error" in schedule) {
