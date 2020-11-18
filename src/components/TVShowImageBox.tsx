@@ -30,6 +30,7 @@ export default function TVShowImageBox({
   };
   return (
     <div css={tVShowImageBoxWrapper(large)}>
+      {/* Image */}
       <div css={showImageWrapper(large)}>
         {large ? (
           <div css={showImageStyle(image?.original)}></div>
@@ -39,6 +40,7 @@ export default function TVShowImageBox({
           </Link>
         )}
       </div>
+      {/* Details */}
       <div css={tVShowImageBox__details(large)}>
         <div className="ratings" css={ratingsStyle(large)}>
           <StarRatings
@@ -47,26 +49,24 @@ export default function TVShowImageBox({
           />
         </div>
         <p css={tVShowImageBox__details__title(large)}>{name || null} </p>
-        {large ? (
-          summary ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(summary),
-              }}
-              css={[
-                tVShowImageBox__details__description,
-                css`
-                  background: none;
-                  > p {
-                    margin: 1em 0;
-                  }
-                `,
-              ]}
-            ></div>
-          ) : (
-            <div css={tVShowImageBox__details__description}></div>
-          )
-        ) : null}
+        {large
+          ? summary && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(summary),
+                }}
+                css={[
+                  tVShowImageBox__details__description,
+                  css`
+                    background: none;
+                    > p {
+                      margin: 1em 0;
+                    }
+                  `,
+                ]}
+              ></div>
+            )
+          : null}
       </div>
     </div>
   );

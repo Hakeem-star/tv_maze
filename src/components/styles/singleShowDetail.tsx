@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import PersonPlaceholder from "../../assets/PersonPlaceholder.svg";
 export const singleShowDetailWrapper = css`
   width: 100%;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -110,7 +111,7 @@ export const starringWrapper = css`
 export const starringWrapper__Content__icon = (imageURL: string) => css`
   width: 65px;
   height: 65px;
-  margin-right: 10px;
+  margin-right: 20px;
   background: url(${imageURL}) top no-repeat,
     url(${PersonPlaceholder}) center no-repeat;
   border-radius: 999px;
@@ -118,6 +119,7 @@ export const starringWrapper__Content__icon = (imageURL: string) => css`
   background-size: cover, 20%;
   background-color: var(--placeholderBGColour);
   flex-shrink: 0;
+
   @media screen and (min-width: 768px) {
     width: 58px;
     height: 58px;
@@ -128,6 +130,10 @@ export const starringWrapper__Content__icon = (imageURL: string) => css`
 export const starringWrapper__Content = css`
   display: flex;
   flex-direction: column;
+  a:link,
+  a:visited {
+    color: inherit;
+  }
   > div {
     display: flex;
     flex-direction: row;
@@ -138,7 +144,8 @@ export const starringWrapper__Content = css`
       flex-direction: column;
       flex: 1;
 
-      p {
+      > p,
+      a {
         font-family: Arial;
         font-size: 15px;
         font-style: normal;
@@ -159,9 +166,15 @@ export const starringWrapper__Content = css`
 
       > div {
         flex-direction: row;
-        p {
+        a {
+          font-weight: 600;
+          text-decoration: underline;
+        }
+        > p,
+        a {
           /* width: 50px; */
           margin-right: 30%;
+          flex: 1;
         }
         /* p:first-of-type {
           width: 273px;

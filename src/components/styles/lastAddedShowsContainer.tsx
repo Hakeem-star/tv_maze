@@ -1,9 +1,7 @@
 import { css } from "@emotion/react";
 
 export const lastAddedShowsContainerWrapper = css`
-  transform: translateY(0px);
   @media screen and (min-width: 576px) {
-    transform: translateY(-150px);
     margin-bottom: -150px;
   }
 `;

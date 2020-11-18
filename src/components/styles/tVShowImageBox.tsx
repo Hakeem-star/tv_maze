@@ -3,10 +3,17 @@ import ImagePlaceholder from "../../assets/ImagePlaceholder.svg";
 export const tVShowImageBoxWrapper = (large: boolean) => css`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
-  &:hover {
+  > div {
+    transition: transform 0.3s ease;
   }
+  ${!large &&
+  `
+  &:hover {
+    >div:nth-of-type(1){
+      transform: translateZ(0) scale(1.05) ;
+    }
+  }`}
   @media screen and (min-width: 768px) {
     ${large && `flex-direction: row;`}
   }
@@ -44,8 +51,10 @@ export const tVShowImageBox__details = (large: boolean) => css`
   flex-basis: 70%;
   width: 100%;
   margin-bottom: 40px;
+  align-items: flex-start;
   @media screen and (min-width: 768px) {
     ${large && ` margin-left: 51px;`}
+    transform:translateY(10%)
   }
   ${!large && `  min-width: auto; width:100%;`}
 `;
@@ -86,7 +95,25 @@ export const tVShowImageBox__details__description = css`
   padding-bottom: 47px;
   background: var(--placeholderBGColour);
   width: 100%;
+
   @media screen and (min-width: 768px) {
+    max-height: 250px;
     min-height: 200px;
+    overflow: auto;
+    padding-right: 10px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      opacity: 1;
+    }
+
+    &:hover {
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #8880;
+    }
   }
 `;

@@ -5,9 +5,10 @@ import { getCast, getShows } from "../util/axiosConfig";
 import SingleShowDetail from "./SingleShowDetail";
 import ShowDetailHero from "./ShowDetailHero";
 import { castResponse } from "../types/castResponse";
+import { error } from "../types/error";
 
-type ShowState = showResponse;
-type CastState = castResponse;
+type ShowState = showResponse | error;
+type CastState = castResponse | error;
 
 export const ShowContext = React.createContext<ShowState | undefined>(
   undefined

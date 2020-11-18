@@ -4,14 +4,26 @@ export const headerStyle = css`
   width: 100%;
   padding: 27px var(--gutter);
   background-color: #ebebeb;
+  margin-bottom: -400px;
+  background: rgb(240, 240, 240);
+  background: linear-gradient(
+    81deg,
+    rgba(240, 240, 240, 1) 0%,
+    rgba(224, 224, 224, 1) 24%,
+    rgba(208, 208, 208, 1) 45%,
+    rgba(192, 192, 192, 1) 66%,
+    rgba(128, 128, 128, 1) 100%
+  );
   a:link,
   a:visited {
     text-decoration: none;
     color: inherit;
   }
-
+  min-height: 480px;
   @media screen and (min-width: 576px) {
-    padding: 90px var(--gutter) 60px;
+    min-height: 580px;
+    margin-bottom: -400px;
+    padding: 90px var(--gutter);
   }
 `;
 

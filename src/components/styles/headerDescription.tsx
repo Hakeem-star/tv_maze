@@ -10,10 +10,9 @@ export const responsiveDescriptionTextStyle = css`
 
 export const headerDescriptionWrapper = css`
   padding: 0 var(--gutter);
-  background-color: #ebebeb;
   padding-bottom: 150px;
   @media screen and (min-width: 576px) {
-    padding-bottom: 300px;
+    padding-bottom: 100px;
   }
   > div {
     max-width: 617px;
