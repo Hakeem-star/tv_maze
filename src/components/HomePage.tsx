@@ -17,7 +17,6 @@ export const ScheduleContext = React.createContext<State | undefined>(
 
 export default function Homepage(): ReactElement {
   const [schedule, setSchedule] = useState<State | undefined>();
-
   useEffect(() => {
     let isMounted = true;
 

@@ -23,6 +23,7 @@ export const showImageWrapper = (large: boolean) => css`
   position: relative;
   width: 100%;
   padding-bottom: 125%;
+  overflow: hidden;
   @media screen and (min-width: 768px) {
     ${large &&
     `
@@ -34,15 +35,29 @@ export const showImageWrapper = (large: boolean) => css`
   }
 `;
 
-export const showImageStyle = (image: string) => css`
+export const showImageStyle = (image: string, large?: boolean) => css`
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   background: url(${image}) left no-repeat,
     url(${ImagePlaceholder}) center no-repeat;
   background-size: contain, 20%;
+
+  ${!image &&
+  `
+  top: 0;
+  left: 0;
+  transform: translateX(0%);
+  height: 100%;
+`}
+  ${image &&
+  `
+  max-height: 100%;`}
+  
+  ${!image && `width: 100%;`}
+  ${large && `max-width: 100%;`}
+    
   ${!image && `background-color:var( --placeholderBGColour);`}
 `;
 

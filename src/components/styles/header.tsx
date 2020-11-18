@@ -1,19 +1,20 @@
 import { css } from "@emotion/react";
 
-export const headerStyle = css`
+export const headerStyle = (dominantColour: number[]) => css`
   width: 100%;
   padding: 27px var(--gutter);
   background-color: #ebebeb;
   margin-bottom: -400px;
   background: rgb(240, 240, 240);
-  background: linear-gradient(
+  background: ${`linear-gradient(
     81deg,
     rgba(240, 240, 240, 1) 0%,
     rgba(224, 224, 224, 1) 24%,
     rgba(208, 208, 208, 1) 45%,
     rgba(192, 192, 192, 1) 66%,
-    rgba(128, 128, 128, 1) 100%
-  );
+   rgba(${dominantColour.join(",")}, 1) 100%
+  );`};
+  transition: background-colour 1s;
   a:link,
   a:visited {
     text-decoration: none;

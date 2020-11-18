@@ -14,6 +14,10 @@ import {
   tVShowImageBox__details__description,
 } from "./styles/tVShowImageBox";
 import { css } from "@emotion/react";
+import { useRef } from "react";
+import getColor from "../util/getColor";
+import { HeaderContext } from "../App";
+import { useContext } from "react";
 interface Props {
   data: showResponse | undefined;
   large?: boolean;
@@ -28,15 +32,45 @@ export default function TVShowImageBox({
   const { image, name, rating, id: showID, summary } = data || {
     image: { original: "" },
   };
+
+  const { setDominantImageColour } = useContext(HeaderContext) || {};
+
   return (
     <div css={tVShowImageBoxWrapper(large)}>
       {/* Image */}
       <div css={showImageWrapper(large)}>
         {large ? (
-          <div css={showImageStyle(image?.original)}></div>
+          image?.original ? (
+            <img
+              crossOrigin="anonymous"
+              onMouseEnter={async (e) => {
+                const colour = await getColor(image?.original);
+                setDominantImageColour && setDominantImageColour(colour);
+              }}
+              css={showImageStyle(image?.original, large)}
+              src={image?.original}
+              alt={name}
+            />
+          ) : (
+            <div css={showImageStyle(image?.original)}></div>
+          )
         ) : (
           <Link to={`/${showID}`}>
-            <div css={showImageStyle(image?.original)}></div>
+            {image?.original ? (
+              <img
+                crossOrigin="anonymous"
+                onMouseEnter={async (e) => {
+                  console.log(e.target);
+                  const colour = await getColor(image?.original);
+                  setDominantImageColour && setDominantImageColour(colour);
+                }}
+                css={showImageStyle(image?.original)}
+                src={image?.original}
+                alt={name}
+              />
+            ) : (
+              <div css={showImageStyle(image?.original)}></div>
+            )}
           </Link>
         )}
       </div>
