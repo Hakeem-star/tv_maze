@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Global } from "@emotion/react";
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
@@ -32,7 +32,7 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/:name">
+            <Route path="/:id">
               <ShowPage />
             </Route>
           </Switch>

@@ -1,0 +1,60 @@
+{
+  "id": 3377,
+  "url": "http://www.tvmaze.com/shows/3377/breakfast",
+  "name": "Breakfast",
+  "type": "News",
+  "language": "English",
+  "genres": [],
+  "status": "Running",
+  "runtime": null,
+  "premiered": "2002-09-27",
+  "officialSite": "http://www.bbc.co.uk/programmes/b006v5tb",
+  "schedule": {
+    "time": "06:00",
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ]
+  },
+  "rating": {
+    "average": null
+  },
+  "weight": 90,
+  "network": {
+    "id": 12,
+    "name": "BBC One",
+    "country": {
+      "name": "United Kingdom",
+      "code": "GB",
+      "timezone": "Europe/London"
+    }
+  },
+  "webChannel": null,
+  "externals": {
+    "tvrage": null,
+    "thetvdb": 77938,
+    "imdb": null
+  },
+  "image": {
+    "medium": "http://static.tvmaze.com/uploads/images/medium_portrait/168/421375.jpg",
+    "original": "http://static.tvmaze.com/uploads/images/original_untouched/168/421375.jpg"
+  },
+  "summary": "<p>The latest news, sport, business and weather from the BBC's Breakfast team.</p>",
+  "updated": 1605658041,
+  "_links": {
+    "self": {
+      "href": "http://api.tvmaze.com/shows/3377"
+    },
+    "previousepisode": {
+      "href": "http://api.tvmaze.com/episodes/1961141"
+    },
+    "nextepisode": {
+      "href": "http://api.tvmaze.com/episodes/1961142"
+    }
+  }
+}

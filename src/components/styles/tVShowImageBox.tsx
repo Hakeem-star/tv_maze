@@ -25,13 +25,16 @@ export const showImageWrapper = (large: boolean) => css`
   }
 `;
 
-export const showImageStyle = css`
+export const showImageStyle = (image: string) => css`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: red;
+  background: ${image ? ` url(${image});` : `red`};
+  background-size: contain;
+  background-position: left;
+  background-repeat: no-repeat;
 `;
 
 export const tVShowImageBox__details = (large: boolean) => css`

@@ -52,23 +52,33 @@ export const showInfoWrapper = css`
     flex-basis: 50%;
     flex-grow: 1;
     margin-top: 20px;
-  }
 
-  p:nth-child(2) {
-    font-family: Arial;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0.15000000596046448px;
-    text-align: left;
-    color: #8c8c8c;
+    > p:nth-of-type(2),
+    span p {
+      font-family: Arial;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.15000000596046448px;
+      text-align: left;
+      color: #8c8c8c;
+    }
   }
   @media screen and (min-width: 576px) {
-    div {
+    > div {
       ${infoWithBottomBorder}
-      p:first-child {
+      >p:first-of-type {
         width: 165px;
+      }
+      > span {
+        display: flex;
+        p {
+          margin-right: 40px;
+        }
+        > p:last-child {
+          margin-right: 0px;
+        }
       }
     }
   }
@@ -82,6 +92,15 @@ export const starringWrapper = css`
     margin-top: 0px;
   }
 `;
+export const starringWrapper__Content__icon = (imageURL: string) => css`
+  width: 65px;
+  height: 65px;
+  margin-right: 10px;
+  background: url(${imageURL});
+  background-size: cover;
+  border-radius: 999px;
+  background-position: top;
+`;
 
 export const starringWrapper__Content = css`
   display: flex;
@@ -90,11 +109,7 @@ export const starringWrapper__Content = css`
     display: flex;
     flex-direction: row;
     height: 65px;
-    i {
-      width: 65px;
-      height: 65px;
-      margin-right: 10px;
-    }
+
     div {
       display: flex;
       flex-direction: column;
@@ -107,7 +122,7 @@ export const starringWrapper__Content = css`
         letter-spacing: 0.15000000596046448px;
         text-align: left;
       }
-      p:nth-child(2) {
+      p:nth-of-type(2) {
         color: #8c8c8c;
       }
     }
@@ -126,7 +141,7 @@ export const starringWrapper__Content = css`
         p {
           width: 50px;
         }
-        p:first-child {
+        p:first-of-type {
           width: 273px;
         }
       }

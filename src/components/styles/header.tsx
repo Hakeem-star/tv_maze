@@ -4,6 +4,12 @@ export const headerStyle = css`
   width: 100%;
   padding: 27px var(--gutter);
   background-color: #ebebeb;
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
   @media screen and (min-width: 576px) {
     padding: 90px var(--gutter) 60px;
   }

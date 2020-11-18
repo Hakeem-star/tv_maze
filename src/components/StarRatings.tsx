@@ -10,12 +10,27 @@ interface Props {
   showNumericalRating: boolean;
 }
 
+const Stars = ({ rating }: { rating: number }) => {
+  //The Api uses a scale of 20 so it needs to be halved
+  //and rounded as we only use whole numbers
+  const roundedRating = Math.round(rating / 2);
+  const stars = Array(5)
+    .fill("")
+    .map((val, index) => <LightStar key={index} />);
+
+  const darkStars = Array(roundedRating)
+    .fill("")
+    .map((val, index) => <DarkStar key={index} />);
+
+  stars.splice(0, roundedRating, ...darkStars);
+
+  return <>{stars}</>;
+};
+
 export default function StarRatings({
   rating,
   showNumericalRating,
 }: Props): ReactElement {
-  const stars = Array(5).fill(<LightStar />);
-  stars.splice(0, rating, Array(rating).fill(<DarkStar />));
   return (
     <div css={starRatingsWrapper}>
       <div
@@ -28,9 +43,9 @@ export default function StarRatings({
           }
         `}
       >
-        {stars}
+        <Stars rating={rating} />
       </div>
-      {showNumericalRating ? <p>{rating}/5</p> : null}
+      {showNumericalRating ? <p>{rating}/10</p> : null}
     </div>
   );
 }

@@ -1,17 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
+import ErrorResponse from "./ErrorResponse";
+import { CastContext, ShowContext } from "./ShowPage";
 import {
   singleShowDetailWrapper,
   headerText,
   showInfoWrapper,
   starringWrapper,
   starringWrapper__Content,
+  starringWrapper__Content__icon,
 } from "./styles/singleShowDetail";
 
 interface Props {}
 
 export default function SingleShowDetail({}: Props): ReactElement {
+  const show = useContext(ShowContext);
+  const cast = useContext(CastContext);
+
+  if (!show || !cast) {
+    return <div>Loading...</div>;
+  }
+
+  if ((show && cast && "error" in show) || "error" in cast) {
+    return <ErrorResponse />;
+  }
+  const { schedule, status, genres, network } = show;
+
   return (
     <div css={singleShowDetailWrapper}>
       <div className="SingleShowDetail-showinfo">
@@ -19,19 +34,27 @@ export default function SingleShowDetail({}: Props): ReactElement {
         <div css={showInfoWrapper}>
           <div>
             <p>Streamed on</p>
-            <p>BBC Three</p>
+            <p>{network && network.name}</p>
           </div>
           <div>
             <p>Schedule</p>
-            <p>Tuesdays</p>
+            <span>
+              {schedule && schedule.days.map((day) => <p key={day}>{day}</p>)}
+            </span>
           </div>
           <div>
             <p>Status</p>
-            <p>Running</p>
+            <p>{status}</p>
           </div>
           <div>
             <p>Genres</p>
-            <p>Drama, Comedy, Music</p>
+            <p>
+              <span>
+                {genres.map((genre) => (
+                  <p key={genre}>{genre}</p>
+                ))}
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -47,34 +70,26 @@ export default function SingleShowDetail({}: Props): ReactElement {
           Starring
         </p>
         <div css={starringWrapper__Content}>
-          <div>
-            <i></i>
-            <div>
-              <p>Victoria Alcock</p>
-              <p>Carol</p>
-            </div>
-          </div>
-          <div>
-            <i></i>
-            <div>
-              <p>Hugo Chegwin</p>
-              <p>Beats</p>
-            </div>
-          </div>
-          <div>
-            <i></i>
-            <div>
-              <p>Allan Mustafa</p>
-              <p>Grindah</p>
-            </div>
-          </div>
-          <div>
-            <i></i>
-            <div>
-              <p>Daniel Sylvester Woolford</p>
-              <p>Decoy</p>
-            </div>
-          </div>
+          {cast.map(
+            (
+              {
+                person: {
+                  name,
+                  image: { original },
+                },
+                character,
+              },
+              index
+            ) => (
+              <div key={name + character + index}>
+                <i css={starringWrapper__Content__icon(original)}></i>
+                <div>
+                  <p>{name || null}</p>
+                  <p>{character.name || null}</p>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>
