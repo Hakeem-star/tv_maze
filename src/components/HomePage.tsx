@@ -1,11 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
-import Axios from "axios";
 import React, { ReactElement, useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { scheduleResponse } from "../types/scheduleResponse";
-import { getSchedule, getShows } from "../util/axiosConfig";
+import { getSchedule } from "../util/axiosConfig";
 import HeaderDescription from "./HeaderDescription";
 import LastAddedShowsContainer from "./LastAddedShowsContainer";
 

@@ -14,7 +14,8 @@ export const headerStyle = (dominantColour: number[]) => css`
     rgba(192, 192, 192, 1) 66%,
    rgba(${dominantColour.join(",")}, 1) 100%
   );`};
-  transition: background-colour 1s;
+
+  transition: background-color 1s;
   a:link,
   a:visited {
     text-decoration: none;

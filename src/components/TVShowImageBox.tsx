@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import DOMPurify from "dompurify";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { showResponse } from "../types/showResponse";
 import StarRatings from "./StarRatings";
@@ -14,14 +14,16 @@ import {
   tVShowImageBox__details__description,
 } from "./styles/tVShowImageBox";
 import { css } from "@emotion/react";
-import { useRef } from "react";
 import getColor from "../util/getColor";
 import { HeaderContext } from "../App";
 import { useContext } from "react";
+import { animateValue } from "../util/animateValue";
+
 interface Props {
   data: showResponse | undefined;
   large?: boolean;
 }
+const animateValueWrapper = animateValue();
 
 export default function TVShowImageBox({
   data,
@@ -34,7 +36,6 @@ export default function TVShowImageBox({
   };
 
   const { setDominantImageColour } = useContext(HeaderContext) || {};
-
   return (
     <div css={tVShowImageBoxWrapper(large)}>
       {/* Image */}
@@ -45,7 +46,8 @@ export default function TVShowImageBox({
               crossOrigin="anonymous"
               onMouseEnter={async (e) => {
                 const colour = await getColor(image?.original);
-                setDominantImageColour && setDominantImageColour(colour);
+                setDominantImageColour &&
+                  animateValueWrapper(colour, setDominantImageColour);
               }}
               css={showImageStyle(image?.original, large)}
               src={image?.original}
@@ -60,9 +62,10 @@ export default function TVShowImageBox({
               <img
                 crossOrigin="anonymous"
                 onMouseEnter={async (e) => {
-                  console.log(e.target);
                   const colour = await getColor(image?.original);
-                  setDominantImageColour && setDominantImageColour(colour);
+
+                  setDominantImageColour &&
+                    animateValueWrapper(colour, setDominantImageColour);
                 }}
                 css={showImageStyle(image?.original)}
                 src={image?.original}

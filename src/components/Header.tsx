@@ -12,7 +12,6 @@ interface Props {
 export default function Header({ styles }: Props): ReactElement {
   const { dominantImageColour } = useContext(HeaderContext) || {};
   let colCheck = dominantImageColour ? dominantImageColour : [128, 128, 128];
-  console.log(colCheck);
   return (
     <header css={[headerStyle(colCheck), styles]}>
       <Link to="/">

@@ -1,6 +1,6 @@
 import ColorThief from "colorthief";
 
-export default async function getColor(imgSrc: string) {
+export default async function getColor(imgSrc: string): Promise<number[]> {
   const colorThief = new ColorThief();
   const img = new Image();
   img.crossOrigin = "Anonymous";
