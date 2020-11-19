@@ -30,13 +30,12 @@ export default function SingleShowShowInfo({ show }: Props): ReactElement {
         </div>
         <div>
           <p>Genres</p>
-          <p>
-            <span>
-              {genres?.map((genre) => (
-                <p key={genre}>{genre}</p>
-              ))}
-            </span>
-          </p>
+
+          <span>
+            {genres?.map((genre) => (
+              <p key={genre}>{genre}</p>
+            ))}
+          </span>
         </div>
       </div>
     </div>
